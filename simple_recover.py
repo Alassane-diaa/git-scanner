@@ -28,8 +28,9 @@ PATTERNS = {
     "jwt_secret":     ("JWT secret",
                        r"(?i)jwt_secret\w*\s*[=:]\s*['\"]?(?P<v>[^\s'\"]{8,})"),
     "password":       ("Password",
-                       r"(?i)(?<![\w$.-])(?:password|passwd|pwd)\b\s*[=:]\s*"
-                       r"['\"]?(?P<v>[^\s'\"]{6,})"),
+                       r"(?i)(?<![\w$.-])(?:[a-z][a-z0-9]*_)?"
+                       r"(?:password|passwd|pwd)\b\s*[=:]\s*"
+                       r"['\"]?(?P<v>[^\s'\"]{6,})"), # possibles faux positifs mais tolérables
 }
 COMPILED = {k: (label, re.compile(rx)) for k, (label, rx) in PATTERNS.items()}
 
